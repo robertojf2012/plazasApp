@@ -1,0 +1,50 @@
+extends layout
+block content
+
+	h2(align='center', style='padding-top: 10px; padding-bottom: 20px;') Plazas APP
+	.row
+		.col-md-8(style='background-color:#e6f9ff;')
+			h4(style='padding-top: 8px;') Plazas registradas
+			table.table.table-striped
+				thead
+					tr
+						th(scope='col') Imagen
+						th(scope='col') Nombre
+						th(scope='col') Descripcion
+						th(scope='col') Telefono
+						th(scope='col') Latitud
+						th(scope='col') Longitud
+						th(scope='col')
+				tbody
+					each plaza in plazas
+						tr
+							td
+								img(src=plaza.imagen, width='100px;', height='80px;')
+							td= plaza.nombre
+							td= plaza.descripcion
+							td= plaza.telefono
+							td= plaza.latitud
+							td= plaza.longitud
+							td
+								a.button.btn.btn-danger(href='deletePlaza/'+plaza.id, type='button') Borrar
+		
+		.col-md-4(style='background-color:#e6ffe6;')
+			h4(style='padding-top: 8px;') Registro de plaza
+			form(method='POST', action='/api/plaza')
+				.form-group
+					input.form-control(type='text', name='nombre', placeholder='Nombre de la plaza')
+				.form-group
+					input.form-control(type='text', name='descripcion', placeholder='Descripcion de la plaza')
+				.form-group
+					input.form-control(type='text', name='imagen', placeholder='URL de la imagen')
+				.form-group
+					input.form-control(type='text', name='telefono', placeholder='Telefono de la plaza')
+				.form-group
+					input.form-control(type='text', name='latitud', placeholder='Latitud de la plaza')
+				.form-group
+					input.form-control(type='text', name='longitud', placeholder='Longitud de la plaza')
+				button.btn.btn-primary(type='submit') Registrar
+
+
+
+
