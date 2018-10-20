@@ -16,6 +16,23 @@ function getPlazas(req,res){
 	});
 }
 
+function getPlaza(req,res){
+	
+	var plazaId = req.params.id;
+	
+	Plaza.find({"_id":plazaId}).exec((err,plaza)=>{
+		
+		if(err){
+			res.status(500).send({message: "Hubo en error en el server"});
+		}
+		if(!plaza){
+			res.status(404).send({message: "No hay registro para mostrar"});
+		}
+		res.status(200).send({plaza});
+		//res.render('index.pug',{plazas:plazas , title:'Plazas'});
+	});
+}
+
 function postPlaza(req,res){
 	var plaza = new Plaza();
 	var params = req.body;
@@ -67,6 +84,7 @@ function deletePlaza(req,res){
 
 module.exports = {
 	getPlazas,
+	getPlaza,
 	postPlaza,
 	deletePlaza
 }
