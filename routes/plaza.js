@@ -5,6 +5,7 @@ const PlazaController = require('../controllers/plaza');
 const api = express.Router();
 
 api.get('/plazas',PlazaController.getPlazas);
+api.get('/plazasMobile',PlazaController.getPlazasMobile);
 api.get('/plaza/:id',PlazaController.getPlaza);
 api.post('/plaza',PlazaController.postPlaza);
 api.get('/deletePlaza/:id',PlazaController.deletePlaza);

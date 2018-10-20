@@ -16,6 +16,19 @@ function getPlazas(req,res){
 	});
 }
 
+function getPlazasMobile(req,res){
+	Plaza.find({}).exec((err,plazas)=>{
+		
+		if(err){
+			res.status(500).send({message: "Hubo en error en el server"});
+		}
+		if(!plazas){
+			res.status(404).send({message: "No hay registros para mostrar"});
+		}
+		res.status(200).send({plazas});
+	});
+}
+
 function getPlaza(req,res){
 	
 	var plazaId = req.params.id;
@@ -84,6 +97,7 @@ function deletePlaza(req,res){
 
 module.exports = {
 	getPlazas,
+	getPlazasMobile,
 	getPlaza,
 	postPlaza,
 	deletePlaza
